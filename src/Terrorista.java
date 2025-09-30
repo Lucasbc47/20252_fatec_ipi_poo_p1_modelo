@@ -1,5 +1,4 @@
 public class Terrorista{
-  public class Terrorista{
 //Prova Fatec Bossini
 
 //Pedido do cliente que todas as propriedades fossem privadas    
@@ -92,5 +91,4 @@ public class Terrorista{
  void PassarVez(){
     System.out.println(NomeTerrorista + "Passou a vez"); 
  }
-}
 }
