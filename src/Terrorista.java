@@ -8,6 +8,16 @@ public class Terrorista {
     private int vida = 10;
     private boolean vivo = true;
 
+    //metodo construtor
+    public Terrorista(String nomeTerrorista, String armamento, int qtdGranadas, int vida , boolean vivo){
+        this.nomeTerrorista = nomeTerrorista;
+        this.armamento = armamento;
+        setQtdGranadas(qtdGranadas);
+        setVida(vida);
+        setVivo(vivo);
+    }
+
+
     // Setters
     public void setNomeTerrorista(String nomeTerrorista) {
         this.nomeTerrorista = nomeTerrorista;
