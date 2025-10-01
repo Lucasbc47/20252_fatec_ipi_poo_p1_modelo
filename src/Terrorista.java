@@ -1,94 +1,109 @@
-public class Terrorista{
-//Prova Fatec Bossini
+public class Terrorista {
+    // Prova Fatec Bossini
 
-//Pedido do cliente que todas as propriedades fossem privadas    
- private String NomeTerrorista;
- private String Armamento;
- private int QtdGranadas;
- private int Vida = 10;
- 
- //Settering
- public void setNomeTerrorista(String NomeTerrorista){
-     this.NomeTerrorista = NomeTerrorista;
- }
- public void setArmamento(String Armamento){
-     this.Armamento = Armamento;
- }
- public void setQtdGranadas(int QtdGranadas){
-     this.QtdGranadas = QtdGranadas;
- }
- public void setVida(int Vida){
-     this.Vida = Vida;
- }
- 
- //Gettering
- public String getNomeTerrorista(){
-     return NomeTerrorista;
- }
- public String getArmamento(){
-     return Armamento;
- }
- public int getQtdGranadas(){
-     return QtdGranadas;
- }
- public int getVida(){
-     return vida;
- }
- 
- public void ReceberDano(int dano){
-     if(Vida > 0){
-         Vida -= dano;
-     }
-     if(vida <= 0){
-         vida = 0;
-         System.out.println(NomeTerrorista + "Faleceu");
-     }
- }
- 
- //método atacar 
- void Atacar(Personagem Policial, String Armamento){
-    
-    int dano = 0;
-    
-    switch(Armamento){
-        case "faca":
-            dano = 1;
-            break;
-        case "pistola":
-            dano = 2;
-            break;
-        case "fuzil":
-            dano = 3;
-            break;
+    // Pedido do cliente que todas as propriedades fossem privadas
+    private String nomeTerrorista;
+    private String armamento;
+    private int qtdGranadas;
+    private int vida = 10;
+
+    // Setters
+    public void setNomeTerrorista(String nomeTerrorista) {
+        this.nomeTerrorista = nomeTerrorista;
     }
-    
-     Policial.ReceberDano(dano);
-     System.out.println(NomeTerrorista + "Atacou com " + Armamento);
-     System.out.println(Policial.getNomePolicial() + "Ficou com vida = " + Policial.getVidaPolicial);
- }
- 
- //método Plantar Bomba
- void PlantarBomba(){
-     System.out.println("A bomba foi plantada por " + NomeTerrorista);
- }
- 
- //método Lancar Granada
- void LancarGranada(Personagem Policial){
-     int dano = 5;
-     if(QtdGranadas>0){
-         QtdGranadas -= 1;
-         
-         Policial.ReceberDano(dano);
-         System.out.println("Granada lançada por " + NomeTerrorista);
-         System.out.println("Granadas restantes " + QtdGranadas);
-     }
-     else{
-         System.out.println("Sem Granadas Restantes");
-     }
- }
- 
- //método passar a vez
- void PassarVez(){
-    System.out.println(NomeTerrorista + "Passou a vez"); 
- }
+
+    public void setArmamento(String armamento) {
+        switch (armamento) {
+            case "faca":
+            case "pistola":
+            case "fuzil":
+                this.armamento = armamento;
+                break;
+            default:
+                System.out.println("Armamentos disponiveis: faca, pistola e fuzil!");
+        }
+    }
+
+    public void setQtdGranadas(int qtdGranadas) {
+        this.qtdGranadas = qtdGranadas;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    // Getters
+    public String getNomeTerrorista() {
+        return this.nomeTerrorista;
+    }
+
+    public String getArmamento() {
+        return this.armamento;
+    }
+
+    public int getQtdGranadas() {
+        return this.qtdGranadas;
+    }
+
+    public int getVida() {
+        return this.vida;
+    }
+
+    public void receberDano(int dano) {
+        if (this.vida <= 0)
+            return;
+
+        this.vida -= dano;
+
+        if (this.vida <= 0) {
+            this.vida = 0;
+            System.out.println(nomeTerrorista + " faleceu");
+        }
+    }
+
+    // Método atacar
+    // public void atacar(Personagem policial, String armamento) {
+    public void atacar(String armamento) {
+        int dano = 0;
+
+        switch (armamento) {
+            case "faca":
+                dano = 1;
+                break;
+            case "pistola":
+                dano = 2;
+                break;
+            case "fuzil":
+                dano = 3;
+                break;
+        }
+
+        // policial.receberDano(dano);
+        System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
+        // System.out.println(policial.getNomePolicial() + " ficou com vida = " +
+        // policial.getVidaPolicial());
+    }
+
+    // Método plantar bomba
+    public void plantarBomba() {
+        System.out.println("A bomba foi plantada por " + nomeTerrorista);
+    }
+
+    // Método lançar granada
+    // public void lancarGranada(Personagem policial) {
+    public void lancarGranada() {
+        if (this.qtdGranadas <= 0) {
+            System.out.println("Sem granadas restantes");
+            return;
+        }
+
+        this.qtdGranadas--;
+        System.out.println("Granada lançada por " + this.nomeTerrorista);
+        System.out.println("Granadas restantes: " + this.qtdGranadas);
+    }
+
+    // Método passar a vez
+    public void passarVez() {
+        System.out.println(this.nomeTerrorista + " passou a vez");
+    }
 }
