@@ -6,6 +6,7 @@ public class Terrorista {
     private String armamento;
     private int qtdGranadas;
     private int vida = 10;
+    private boolean vivo = true;
 
     // Setters
     public void setNomeTerrorista(String nomeTerrorista) {
@@ -32,6 +33,10 @@ public class Terrorista {
         this.vida = vida;
     }
 
+    public void setVivo(boolean vivo){
+        this.vivo = true;
+    }
+
     // Getters
     public String getNomeTerrorista() {
         return this.nomeTerrorista;
@@ -47,6 +52,10 @@ public class Terrorista {
 
     public int getVida() {
         return this.vida;
+    }
+
+    public boolean getVivo(){
+        return this.vivo;
     }
 
     public void receberDano(int dano) {
@@ -66,7 +75,8 @@ public class Terrorista {
     public void atacar(String armamento) {
         int dano = 0;
 
-        switch (armamento) {
+        if(vivo){
+            switch (armamento) {
             case "faca":
                 dano = 1;
                 break;
@@ -76,23 +86,33 @@ public class Terrorista {
             case "fuzil":
                 dano = 3;
                 break;
+            }
+            
+            // policial.receberDano(dano);
+            System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
+            // System.out.println(policial.getNomePolicial() + " ficou com vida = " +
+            // policial.getVidaPolicial());
         }
-
-        // policial.receberDano(dano);
-        System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
-        // System.out.println(policial.getNomePolicial() + " ficou com vida = " +
-        // policial.getVidaPolicial());
+        else{
+            System.out.println(nomeTerrorista + " está morto e não consegue atacar!");
+        }
     }
 
     // Método plantar bomba
     public void plantarBomba() {
-        System.out.println("A bomba foi plantada por " + nomeTerrorista);
+        if(vivo){
+            System.out.println("A bomba foi plantada por " + nomeTerrorista);
+        }
+        else{
+            System.out.println(nomeTerrorista + " está morto e não consegue Plantar a bomba");
+        }
     }
 
     // Método lançar granada
     // public void lancarGranada(Personagem policial) {
     public void lancarGranada() {
-        if (this.qtdGranadas <= 0) {
+        if(vivo){
+            if (this.qtdGranadas <= 0) {
             System.out.println("Sem granadas restantes");
             return;
         }
@@ -100,6 +120,10 @@ public class Terrorista {
         this.qtdGranadas--;
         System.out.println("Granada lançada por " + this.nomeTerrorista);
         System.out.println("Granadas restantes: " + this.qtdGranadas);
+        }
+        else{
+            System.out.println(nomeTerrorista + " está morto e não consegue Lancar Granadas");
+        }
     }
 
     // Método passar a vez
