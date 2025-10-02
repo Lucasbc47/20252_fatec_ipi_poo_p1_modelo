@@ -13,6 +13,26 @@ public class App {
 
         // loop do jogo
         while (true) {
+            /*
+             * Gabriel Rossi --
+             * Mecanismo de bomba
+             * 
+             * O mecanismo de plantar bomba funciona da seguinte forma:
+             * - Se a bomba for plantada e não for desarmada: vitória do terrorista e fim de
+             * jogo
+             * - Se a bomba for plantada e for desarmada: vitória do policial e fim de jogo
+             * - Se a bomba não for plantada, nada de diferente acontece.
+             * 
+             * Para que seja considerado que a bomba foi plantada e desarmada na mesma
+             * rodada,
+             * basta que esses dois comportamentos sejam acionados, não importando a ordem.
+             * O
+             * que importa é que, no final da rodada, se eles foram acionados.
+             * Mensagem do commit: feat(p1): implementa mecanismo de bomba
+             */
+
+            boolean bombaFoiPlantada = false;
+            boolean bombaFoiDesarmada = false;
             // 0 = terrorista, 1 = policial
             int quemComeca = random.nextInt(2);
 
@@ -21,6 +41,7 @@ public class App {
                 switch (acaoTerrorista) {
                     case 0:
                         terrorista.plantarBomba();
+                        bombaFoiPlantada = true;
                         break;
                     case 1:
                         terrorista.lancarGranada();
@@ -43,6 +64,7 @@ public class App {
                 switch (acaoPolicial) {
                     case 0:
                         policial.desarmarBomba();
+                        bombaFoiDesarmada = true;
                         break;
                     case 1:
                         policial.lancarGranada();
@@ -66,6 +88,7 @@ public class App {
                 switch (acaoPolicial) {
                     case 0:
                         policial.desarmarBomba();
+                        bombaFoiDesarmada = true;
                         break;
                     case 1:
                         policial.lancarGranada();
@@ -88,6 +111,7 @@ public class App {
                 switch (acaoTerrorista) {
                     case 0:
                         terrorista.plantarBomba();
+                        bombaFoiPlantada = true;
                         break;
                     case 1:
                         terrorista.lancarGranada();
@@ -107,6 +131,20 @@ public class App {
                     break;
                 }
             }
+
+            if (bombaFoiPlantada == true) {
+                if (bombaFoiDesarmada == false) {
+                    System.out.println("Bomba explodiu! " + terrorista.getNomeTerrorista() + " venceu! \\o/"
+                            + " [TERRORISTS WIN]");
+                    break;
+                }
+                if (bombaFoiDesarmada == true) {
+                    System.out.println("Bomba foi desarmada! (ufa!) " + policial.getNomePolicial() + " venceu! \\o/"
+                            + " [COUNTER TERRORISTS WIN]");
+                    break;
+                }
+            }
+
             System.out.println("\n" + terrorista);
             System.out.println(policial);
             System.out.println("+++++++++++++++++++++++++++++++++++++++\n");
