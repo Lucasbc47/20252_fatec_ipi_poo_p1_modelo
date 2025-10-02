@@ -70,9 +70,8 @@ public class Policial {
         return this.energia;
     }
 
-    // métodos de ação
-    // receber dano
-     public void receberDano(int dano) {
+    // Método receber dano
+    public void receberDano(int dano) {
         if (this.energia <= 0)
             return;
 
@@ -80,12 +79,12 @@ public class Policial {
 
         if (this.energia <= 0) {
             this.energia = 0;
-            System.out.println(nomePolicial + " faleceu");
+            System.out.println(this.nomePolicial + " faleceu");
         }
     }
 
-    //ação atacar
-    public void atacar(String armamento) {
+    // Método atacar
+    public int atacar(String armamento) {
         int dano = 0;
 
         if (this.energia > 0) {
@@ -103,20 +102,21 @@ public class Policial {
 
             System.out.println(this.nomePolicial + " atacou com " + this.armamento);
         } else {
-            System.out.println(nomePolicial + " está morto e não consegue atacar!");
+            System.out.println(this.nomePolicial + " estão morto e não consegue atacar!");
         }
+        return dano;
     }
 
-    //desarmar bomba
+    // Método desarmar bomba
     public void desarmarBomba() {
         if (this.energia > 0) {
-            System.out.println("A bomba foi desarmada por " + nomePolicial);
+            System.out.println("A bomba foi desarmada por " + this.nomePolicial);
         } else {
-            System.out.println(nomePolicial + " está morto e não consegue desarmar a bomba");
+            System.out.println(this.nomePolicial + " estão morto e não consegue desarmar a bomba");
         }
     }
 
-    //lançar granada
+    // Método lançar granada
     public void lancarGranada() {
         if (this.energia > 0) {
             if (this.quantidadeGranadas <= 0) {
@@ -125,20 +125,25 @@ public class Policial {
             }
 
             this.quantidadeGranadas--;
-            System.out.println("Granada lançada por " + this.nomePolicial);
-            System.out.println("Granadas restantes: " + this.quantidadeGranadas);
+            System.out.println("Granada lançada por " + this.nomePolicial + " - restam: " + this.quantidadeGranadas);
         } else {
-            System.out.println(nomePolicial + " está morto e não consegue Lancar Granadas");
+            System.out.println(this.nomePolicial + " estão morto e não consegue Lancar Granadas");
         }
     }
 
-    //passar vez
+    // Método passar a vez
     public void passarVez() {
         if (this.energia > 0) {
-            System.out.println(nomePolicial + " Passou a vez");
+            System.out.println(this.nomePolicial + " passou a vez");
             return;
         } else {
-            System.out.println(nomePolicial + " está morto e não consegue Passar a vez");
+            System.out.println(this.nomePolicial + " estão morto e não consegue Passar a vez");
         }
+    }
+
+    // toString: para visualização agradavel da classe de Policial
+    public String toString() {
+        return "<Policial nome=" + this.nomePolicial + " armamento=" + this.armamento +
+                " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
     }
 }
