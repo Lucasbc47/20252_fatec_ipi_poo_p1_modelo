@@ -1,6 +1,8 @@
 public class TerroristaTeste {
     public static void main(String[] args) {
 
+        // viabilizando testes com mapa
+        String mapa = "Roma";
         Terrorista terror = new Terrorista("mohammed", "fuzil", 3, 10);
 
         // testando getters...
@@ -10,10 +12,10 @@ public class TerroristaTeste {
         System.out.println(terror.getEnergia());
 
         // metodos do terrorista
-        terror.atacar("fuzil");
-        terror.lancarGranada();
-        terror.plantarBomba();
-        terror.passarVez();
+        terror.atacar("fuzil", mapa);
+        terror.lancarGranada(mapa);
+        terror.plantarBomba(mapa);
+        terror.passarVez(mapa);
 
         // dano & energia
         System.out.println(terror.getEnergia());
