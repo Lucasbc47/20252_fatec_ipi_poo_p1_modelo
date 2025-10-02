@@ -102,7 +102,7 @@ public class Policial {
 
             System.out.println(this.nomePolicial + " atacou com " + this.armamento);
         } else {
-            System.out.println(this.nomePolicial + " estão morto e não consegue atacar!");
+            System.out.println(this.nomePolicial + " está morto e não consegue atacar!");
         }
         return dano;
     }
@@ -112,7 +112,7 @@ public class Policial {
         if (this.energia > 0) {
             System.out.println("A bomba foi desarmada por " + this.nomePolicial);
         } else {
-            System.out.println(this.nomePolicial + " estão morto e não consegue desarmar a bomba");
+            System.out.println(this.nomePolicial + " está morto e não consegue desarmar a bomba");
         }
     }
 
@@ -127,7 +127,7 @@ public class Policial {
             this.quantidadeGranadas--;
             System.out.println("Granada lançada por " + this.nomePolicial + " - restam: " + this.quantidadeGranadas);
         } else {
-            System.out.println(this.nomePolicial + " estão morto e não consegue Lancar Granadas");
+            System.out.println(this.nomePolicial + " está morto e não consegue Lancar Granadas");
         }
     }
 
@@ -137,7 +137,7 @@ public class Policial {
             System.out.println(this.nomePolicial + " passou a vez");
             return;
         } else {
-            System.out.println(this.nomePolicial + " estão morto e não consegue Passar a vez");
+            System.out.println(this.nomePolicial + " está morto e não consegue Passar a vez");
         }
     }
 

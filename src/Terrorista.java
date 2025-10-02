@@ -80,7 +80,7 @@ public class Terrorista {
 
         if (this.energia <= 0) {
             this.energia = 0;
-            System.out.println(nomeTerrorista + " faleceu");
+            System.out.println(this.nomeTerrorista + " faleceu");
         }
     }
 
@@ -103,7 +103,7 @@ public class Terrorista {
 
             System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
         } else {
-            System.out.println(nomeTerrorista + " está morto e não consegue atacar!");
+            System.out.println(this.nomeTerrorista + " está morto e não consegue atacar!");
         }
         return dano;
     }
@@ -128,7 +128,7 @@ public class Terrorista {
             this.quantidadeGranadas--;
             System.out.println("Granada lançada por " + this.nomeTerrorista + " - restam: " + this.quantidadeGranadas);
         } else {
-            System.out.println(nomeTerrorista + " está morto e não consegue Lancar Granadas");
+            System.out.println(this.nomeTerrorista + " está morto e não consegue Lancar Granadas");
         }
     }
 
