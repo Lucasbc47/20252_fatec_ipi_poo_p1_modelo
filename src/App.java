@@ -6,10 +6,21 @@ public class App {
 
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
+        
+        // Sistema de Mapas
+        String mapa;
 
         // "No arquivo principal, instancie um terrorista e um policial utilizando um
         // construtor que já recebe os valores a serem atribuídos como parâmetro.
         // Escolha cada valor como desejar."
+
+        System.out.println("BEM VINDO AO COUNTER FATEC OFFENSIVE - VERSION IPIRANGA!");
+        System.out.println("\n [+] SELETOR DE MAPA:");
+        System.out.println("1 - Roma");
+        System.out.println("2 - Fatec Ipiranga\n>>:");
+
+        int escolherMapa = scanner.nextInt();
+        mapa = (escolherMapa == 1 ? "Roma" : "Fatec Ipiranga");
 
         int numRodadas = 0;
         System.out.println("Insira um numero [IMPAR] de rodadas (1-20):");
@@ -65,18 +76,18 @@ public class App {
                     int acaoTerrorista = random.nextInt(4);
                     switch (acaoTerrorista) {
                         case 0:
-                            terrorista.plantarBomba();
+                            terrorista.plantarBomba(mapa);
                             bombaFoiPlantada = true;
                             break;
                         case 1:
-                            terrorista.lancarGranada();
+                            terrorista.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento());
+                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento(), mapa);
                             policial.receberDano(danoTerrorista);
                             break;
                         case 3:
-                            terrorista.passarVez();
+                            terrorista.passarVez(mapa);
                             int ganhoEnergia = random.nextInt(2) + 1;
                             policial.setEnergia(policial.getEnergia() + ganhoEnergia);
                             break;
@@ -89,18 +100,18 @@ public class App {
                     int acaoPolicial = random.nextInt(4);
                     switch (acaoPolicial) {
                         case 0:
-                            policial.desarmarBomba();
+                            policial.desarmarBomba(mapa);
                             bombaFoiDesarmada = true;
                             break;
                         case 1:
-                            policial.lancarGranada();
+                            policial.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoPolicial = policial.atacar(policial.getArmamento());
+                            int danoPolicial = policial.atacar(policial.getArmamento(), mapa);
                             terrorista.receberDano(danoPolicial);
                             break;
                         case 3:
-                            policial.passarVez();
+                            policial.passarVez(mapa);
                             int ganhoEnergia2 = random.nextInt(2) + 1;
                             terrorista.setEnergia(terrorista.getEnergia() + ganhoEnergia2);
                             break;
@@ -114,18 +125,18 @@ public class App {
                     int acaoPolicial = random.nextInt(4);
                     switch (acaoPolicial) {
                         case 0:
-                            policial.desarmarBomba();
+                            policial.desarmarBomba(mapa);
                             bombaFoiDesarmada = true;
                             break;
                         case 1:
-                            policial.lancarGranada();
+                            policial.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoPolicial = policial.atacar(policial.getArmamento());
+                            int danoPolicial = policial.atacar(policial.getArmamento(), mapa);
                             terrorista.receberDano(danoPolicial);
                             break;
                         case 3:
-                            policial.passarVez();
+                            policial.passarVez(mapa);
                             int ganhoEnergia3 = random.nextInt(2) + 1;
                             terrorista.setEnergia(terrorista.getEnergia() + ganhoEnergia3);
                             break;
@@ -138,18 +149,18 @@ public class App {
                     int acaoTerrorista = random.nextInt(4);
                     switch (acaoTerrorista) {
                         case 0:
-                            terrorista.plantarBomba();
+                            terrorista.plantarBomba(mapa);
                             bombaFoiPlantada = true;
                             break;
                         case 1:
-                            terrorista.lancarGranada();
+                            terrorista.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento());
+                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento(), mapa);
                             policial.receberDano(danoTerrorista);
                             break;
                         case 3:
-                            terrorista.passarVez();
+                            terrorista.passarVez(mapa);
                             int ganhoEnergia4 = random.nextInt(2) + 1;
                             policial.setEnergia(policial.getEnergia() + ganhoEnergia4);
                             break;

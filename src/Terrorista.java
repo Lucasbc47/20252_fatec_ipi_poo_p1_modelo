@@ -81,11 +81,11 @@ public class Terrorista {
         if (this.energia <= 0) {
             this.energia = 0;
             System.out.println(this.nomeTerrorista + " faleceu (x_x;)");
-        } 
+        }
     }
 
     // Método atacar
-    public int atacar(String armamento) {
+    public int atacar(String armamento, String mapa) {
         int dano = 0;
 
         if (this.energia > 0) {
@@ -101,7 +101,7 @@ public class Terrorista {
                     break;
             }
 
-            System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
+            System.out.println(this.nomeTerrorista + " atacando com " + this.armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue atacar!");
         }
@@ -109,16 +109,16 @@ public class Terrorista {
     }
 
     // Método plantar bomba
-    public void plantarBomba() {
+    public void plantarBomba(String mapa) {
         if (this.energia > 0) {
-            System.out.println("A bomba foi plantada por " + this.nomeTerrorista);
+            System.out.println(this.nomeTerrorista + " plantando bomba ~~ " + mapa);
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue plantar a bomba");
         }
     }
 
     // Método lançar granada
-    public void lancarGranada() {
+    public void lancarGranada(String mapa) {
         if (this.energia > 0) {
             if (this.quantidadeGranadas <= 0) {
                 System.out.println("Sem granadas restantes");
@@ -126,16 +126,17 @@ public class Terrorista {
             }
 
             this.quantidadeGranadas--;
-            System.out.println("Granada lançada por " + this.nomeTerrorista + " - restam: " + this.quantidadeGranadas);
+            System.out.println(
+                    this.nomeTerrorista + " lancando granada ~~ " + mapa + " - restam: " + this.quantidadeGranadas);
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue Lancar Granadas");
         }
     }
 
     // Método passar a vez
-    public void passarVez() {
+    public void passarVez(String mapa) {
         if (this.energia > 0) {
-            System.out.println(this.nomeTerrorista + " passou a vez");
+            System.out.println(this.nomeTerrorista + " passando a vez  ~~ " + "[" + mapa + "]");
             return;
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue Passar a vez");

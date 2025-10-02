@@ -84,7 +84,7 @@ public class Policial {
     }
 
     // Método atacar
-    public int atacar(String armamento) {
+    public int atacar(String armamento, String mapa) {
         int dano = 0;
 
         if (this.energia > 0) {
@@ -100,7 +100,7 @@ public class Policial {
                     break;
             }
 
-            System.out.println(this.nomePolicial + " atacou com " + this.armamento);
+            System.out.println(this.nomePolicial + " atacando com " + this.armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue atacar!");
         }
@@ -108,16 +108,16 @@ public class Policial {
     }
 
     // Método desarmar bomba
-    public void desarmarBomba() {
+    public void desarmarBomba(String mapa) {
         if (this.energia > 0) {
-            System.out.println("A bomba foi desarmada por " + this.nomePolicial);
+            System.out.println(this.nomePolicial + " desarmando bomba ~~ " + mapa);
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue desarmar a bomba");
         }
     }
 
     // Método lançar granada
-    public void lancarGranada() {
+    public void lancarGranada(String mapa) {
         if (this.energia > 0) {
             if (this.quantidadeGranadas <= 0) {
                 System.out.println("Sem granadas restantes");
@@ -125,16 +125,17 @@ public class Policial {
             }
 
             this.quantidadeGranadas--;
-            System.out.println("Granada lançada por " + this.nomePolicial + " - restam: " + this.quantidadeGranadas);
+            System.out.println(
+                    this.nomePolicial + " lancando granada ~~ " + mapa + " - restam: " + this.quantidadeGranadas);
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue Lancar Granadas");
         }
     }
 
     // Método passar a vez
-    public void passarVez() {
+    public void passarVez(String mapa) {
         if (this.energia > 0) {
-            System.out.println(this.nomePolicial + " passou a vez");
+            System.out.println(this.nomePolicial + " passando a vez  ~~ " + "[" + mapa + "]");
             return;
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue Passar a vez");
