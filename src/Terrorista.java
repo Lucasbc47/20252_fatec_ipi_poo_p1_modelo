@@ -85,7 +85,7 @@ public class Terrorista {
     }
 
     // Método atacar
-    public void atacar(String armamento) {
+    public int atacar(String armamento) {
         int dano = 0;
 
         if (this.energia > 0) {
@@ -105,14 +105,15 @@ public class Terrorista {
         } else {
             System.out.println(nomeTerrorista + " está morto e não consegue atacar!");
         }
+        return dano;
     }
 
     // Método plantar bomba
     public void plantarBomba() {
         if (this.energia > 0) {
-            System.out.println("A bomba foi plantada por " + nomeTerrorista);
+            System.out.println("A bomba foi plantada por " + this.nomeTerrorista);
         } else {
-            System.out.println(nomeTerrorista + " está morto e não consegue Plantar a bomba");
+            System.out.println(this.nomeTerrorista + " está morto e não consegue plantar a bomba");
         }
     }
 
@@ -125,8 +126,7 @@ public class Terrorista {
             }
 
             this.quantidadeGranadas--;
-            System.out.println("Granada lançada por " + this.nomeTerrorista);
-            System.out.println("Granadas restantes: " + this.quantidadeGranadas);
+            System.out.println("Granada lançada por " + this.nomeTerrorista + " - restam: " + this.quantidadeGranadas);
         } else {
             System.out.println(nomeTerrorista + " está morto e não consegue Lancar Granadas");
         }
@@ -135,10 +135,16 @@ public class Terrorista {
     // Método passar a vez
     public void passarVez() {
         if (this.energia > 0) {
-            System.out.println(nomeTerrorista + " Passou a vez");
+            System.out.println(this.nomeTerrorista + " passou a vez");
             return;
         } else {
-            System.out.println(nomeTerrorista + " está morto e não consegue Passar a vez");
+            System.out.println(this.nomeTerrorista + " está morto e não consegue Passar a vez");
         }
+    }
+
+    // toString: para visualização agradavel da classe de Terrorista
+    public String toString() {
+        return "<Terrorista nome=" + this.nomeTerrorista + " armamento=" + this.armamento +
+                " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
     }
 }
