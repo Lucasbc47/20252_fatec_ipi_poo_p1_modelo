@@ -134,6 +134,11 @@ public class Terrorista {
 
     // Método passar a vez
     public void passarVez() {
-        System.out.println(this.nomeTerrorista + " passou a vez");
+        if (this.energia > 0) {
+            System.out.println(nomeTerrorista + " Passou a vez");
+            return;
+        } else {
+            System.out.println(nomeTerrorista + " está morto e não consegue Passar a vez");
+        }
     }
 }
