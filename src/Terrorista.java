@@ -80,8 +80,8 @@ public class Terrorista {
 
         if (this.energia <= 0) {
             this.energia = 0;
-            System.out.println(this.nomeTerrorista + " faleceu");
-        }
+            System.out.println(this.nomeTerrorista + " faleceu (x_x;)");
+        } 
     }
 
     // Método atacar

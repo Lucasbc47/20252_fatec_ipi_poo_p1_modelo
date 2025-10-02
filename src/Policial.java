@@ -79,7 +79,7 @@ public class Policial {
 
         if (this.energia <= 0) {
             this.energia = 0;
-            System.out.println(this.nomePolicial + " faleceu");
+            System.out.println(this.nomePolicial + " faleceu (x_x;)");
         }
     }
 
