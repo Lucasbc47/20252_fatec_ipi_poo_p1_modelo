@@ -1,26 +1,25 @@
 public class Terrorista {
-    // Prova Fatec Bossini
 
-    // Pedido do cliente que todas as propriedades fossem privadas
     private String nomeTerrorista;
     private String armamento;
-    private int qtdGranadas;
-    private int vida = 10;
-    private boolean vivo = true;
+    private int quantidadeGranadas;
+    private int energia;
 
-    //metodo construtor
-    public Terrorista(String nomeTerrorista, String armamento, int qtdGranadas, int vida , boolean vivo){
-        this.nomeTerrorista = nomeTerrorista;
-        this.armamento = armamento;
-        setQtdGranadas(qtdGranadas);
-        setVida(vida);
-        setVivo(vivo);
+    // Construtor
+    public Terrorista(String nomeTerrorista, String armamento, int quantidadeGranadas, int energia) {
+        setNomeTerrorista(nomeTerrorista);
+        setArmamento(armamento);
+        setQuantidadeGranadas(quantidadeGranadas);
+        setEnergia(energia);
     }
-
 
     // Setters
     public void setNomeTerrorista(String nomeTerrorista) {
-        this.nomeTerrorista = nomeTerrorista;
+        if (nomeTerrorista.length() >= 4) {
+            this.nomeTerrorista = nomeTerrorista;
+        } else {
+            System.out.println("Nome deve ter pelo menos 4 caracteres!");
+        }
     }
 
     public void setArmamento(String armamento) {
@@ -35,16 +34,24 @@ public class Terrorista {
         }
     }
 
-    public void setQtdGranadas(int qtdGranadas) {
-        this.qtdGranadas = qtdGranadas;
+    public void setQuantidadeGranadas(int quantidadeGranadas) {
+        if (quantidadeGranadas < 0) {
+            this.quantidadeGranadas = 0;
+        } else if (quantidadeGranadas > 5) {
+            this.quantidadeGranadas = 5;
+        } else {
+            this.quantidadeGranadas = quantidadeGranadas;
+        }
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
-    public void setVivo(boolean vivo){
-        this.vivo = true;
+    public void setEnergia(int energia) {
+        if (energia < 0) {
+            this.energia = 0;
+        } else if (energia > 10) {
+            this.energia = 10;
+        } else {
+            this.energia = energia;
+        }
     }
 
     // Getters
@@ -56,82 +63,71 @@ public class Terrorista {
         return this.armamento;
     }
 
-    public int getQtdGranadas() {
-        return this.qtdGranadas;
+    public int getQuantidadeGranadas() {
+        return this.quantidadeGranadas;
     }
 
-    public int getVida() {
-        return this.vida;
+    public int getEnergia() {
+        return this.energia;
     }
 
-    public boolean getVivo(){
-        return this.vivo;
-    }
-
+    // Método receber dano
     public void receberDano(int dano) {
-        if (this.vida <= 0)
+        if (this.energia <= 0)
             return;
 
-        this.vida -= dano;
+        this.energia -= dano;
 
-        if (this.vida <= 0) {
-            this.vida = 0;
+        if (this.energia <= 0) {
+            this.energia = 0;
             System.out.println(nomeTerrorista + " faleceu");
         }
     }
 
     // Método atacar
-    // public void atacar(Personagem policial, String armamento) {
     public void atacar(String armamento) {
         int dano = 0;
 
-        if(vivo){
+        if (this.energia > 0) {
             switch (armamento) {
-            case "faca":
-                dano = 1;
-                break;
-            case "pistola":
-                dano = 2;
-                break;
-            case "fuzil":
-                dano = 3;
-                break;
+                case "faca":
+                    dano = 1;
+                    break;
+                case "pistola":
+                    dano = 2;
+                    break;
+                case "fuzil":
+                    dano = 3;
+                    break;
             }
-            
-            // policial.receberDano(dano);
+
             System.out.println(this.nomeTerrorista + " atacou com " + this.armamento);
-            // System.out.println(policial.getNomePolicial() + " ficou com vida = " +
-            // policial.getVidaPolicial());
-        }
-        else{
+        } else {
             System.out.println(nomeTerrorista + " está morto e não consegue atacar!");
         }
     }
 
     // Método plantar bomba
     public void plantarBomba() {
-        if(vivo){
+        if (this.energia > 0) {
             System.out.println("A bomba foi plantada por " + nomeTerrorista);
-        }
-        else{
+        } else {
             System.out.println(nomeTerrorista + " está morto e não consegue Plantar a bomba");
         }
     }
 
     // Método lançar granada
-    // public void lancarGranada(Personagem policial) {
     public void lancarGranada() {
-        if(vivo){
-            if (this.qtdGranadas <= 0) {
-            System.out.println("Sem granadas restantes");
-            return;
-        }
+        if (this.energia > 0) {
+            if (this.quantidadeGranadas <= 0) {
+                System.out.println("Sem granadas restantes");
+                return;
+            }
 
-        this.qtdGranadas--;
-        System.out.println("Granada lançada por " + this.nomeTerrorista);
-        System.out.println("Granadas restantes: " + this.qtdGranadas);
-        }
-        else{
+            this.quantidadeGranadas--;
+            System.out.println("Granada lançada por " + this.nomeTerrorista);
+            System.out.println("Granadas restantes: " + this.quantidadeGranadas);
+        } else {
             System.out.println(nomeTerrorista + " está morto e não consegue Lancar Granadas");
         }
     }
