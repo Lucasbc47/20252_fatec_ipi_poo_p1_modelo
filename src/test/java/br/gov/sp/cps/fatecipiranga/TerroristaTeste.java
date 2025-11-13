@@ -1,3 +1,5 @@
+package br.gov.sp.cps.fatecipiranga;
+
 public class TerroristaTeste {
     public static void main(String[] args) {
 
