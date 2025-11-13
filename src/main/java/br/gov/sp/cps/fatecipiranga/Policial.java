@@ -1,25 +1,31 @@
-public class Terrorista {
+package br.gov.sp.cps.fatecipiranga;
 
-    private String nomeTerrorista;
+public class Policial {
+
+    private String nomePolicial;
     private String armamento;
     private int quantidadeGranadas;
     private int energia;
 
-    // Construtor
-    public Terrorista(String nomeTerrorista, String armamento, int quantidadeGranadas, int energia) {
-        setNomeTerrorista(nomeTerrorista);
+    // construtor
+    public Policial(String nomePolicial, String armamento, int quantidadeGranadas, int energia) {
+        setNomePolicial(nomePolicial);
         setArmamento(armamento);
         setQuantidadeGranadas(quantidadeGranadas);
         setEnergia(energia);
     }
 
-    // Setters
-    public void setNomeTerrorista(String nomeTerrorista) {
-        if (nomeTerrorista.length() >= 4) {
-            this.nomeTerrorista = nomeTerrorista;
+    // getters e setters
+    public void setNomePolicial(String nomePolicial) {
+        if (nomePolicial.length() >= 4) {
+            this.nomePolicial = nomePolicial;
         } else {
             System.out.println("Nome deve ter pelo menos 4 caracteres!");
         }
+    }
+
+    public String getNomePolicial() {
+        return this.nomePolicial;
     }
 
     public void setArmamento(String armamento) {
@@ -34,6 +40,10 @@ public class Terrorista {
         }
     }
 
+    public String getArmamento() {
+        return this.armamento;
+    }
+
     public void setQuantidadeGranadas(int quantidadeGranadas) {
         if (quantidadeGranadas < 0) {
             this.quantidadeGranadas = 0;
@@ -44,6 +54,10 @@ public class Terrorista {
         }
     }
 
+    public int getQuantidadeGranadas() {
+        return this.quantidadeGranadas;
+    }
+
     public void setEnergia(int energia) {
         if (energia < 0) {
             this.energia = 0;
@@ -52,19 +66,6 @@ public class Terrorista {
         } else {
             this.energia = energia;
         }
-    }
-
-    // Getters
-    public String getNomeTerrorista() {
-        return this.nomeTerrorista;
-    }
-
-    public String getArmamento() {
-        return this.armamento;
-    }
-
-    public int getQuantidadeGranadas() {
-        return this.quantidadeGranadas;
     }
 
     public int getEnergia() {
@@ -80,7 +81,7 @@ public class Terrorista {
 
         if (this.energia <= 0) {
             this.energia = 0;
-            System.out.println(this.nomeTerrorista + " faleceu (x_x;)");
+            System.out.println(this.nomePolicial + " faleceu (x_x;)");
         }
     }
 
@@ -101,19 +102,19 @@ public class Terrorista {
                     break;
             }
 
-            System.out.println(this.nomeTerrorista + " atacando com " + this.armamento + " ~~ " + mapa);
+            System.out.println(this.nomePolicial + " atacando com " + this.armamento + " ~~ " + mapa);
         } else {
-            System.out.println(this.nomeTerrorista + " está morto e não consegue atacar!");
+            System.out.println(this.nomePolicial + " está morto e não consegue atacar!");
         }
         return dano;
     }
 
-    // Método plantar bomba
-    public void plantarBomba(String mapa) {
+    // Método desarmar bomba
+    public void desarmarBomba(String mapa) {
         if (this.energia > 0) {
-            System.out.println(this.nomeTerrorista + " plantando bomba ~~ " + mapa);
+            System.out.println(this.nomePolicial + " desarmando bomba ~~ " + mapa);
         } else {
-            System.out.println(this.nomeTerrorista + " está morto e não consegue plantar a bomba");
+            System.out.println(this.nomePolicial + " está morto e não consegue desarmar a bomba");
         }
     }
 
@@ -127,25 +128,25 @@ public class Terrorista {
 
             this.quantidadeGranadas--;
             System.out.println(
-                    this.nomeTerrorista + " lancando granada ~~ " + mapa + " - restam: " + this.quantidadeGranadas);
+                    this.nomePolicial + " lancando granada ~~ " + mapa + " - restam: " + this.quantidadeGranadas);
         } else {
-            System.out.println(this.nomeTerrorista + " está morto e não consegue Lancar Granadas");
+            System.out.println(this.nomePolicial + " está morto e não consegue Lancar Granadas");
         }
     }
 
     // Método passar a vez
     public void passarVez(String mapa) {
         if (this.energia > 0) {
-            System.out.println(this.nomeTerrorista + " passando a vez  ~~ " + "[" + mapa + "]");
+            System.out.println(this.nomePolicial + " passando a vez  ~~ " + "[" + mapa + "]");
             return;
         } else {
-            System.out.println(this.nomeTerrorista + " está morto e não consegue Passar a vez");
+            System.out.println(this.nomePolicial + " está morto e não consegue Passar a vez");
         }
     }
 
-    // toString: para visualização agradavel da classe de Terrorista
+    // toString: para visualização agradavel da classe de Policial
     public String toString() {
-        return "<Terrorista nome=" + this.nomeTerrorista + " armamento=" + this.armamento +
+        return "<Policial nome=" + this.nomePolicial + " armamento=" + this.armamento +
                 " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
     }
 }

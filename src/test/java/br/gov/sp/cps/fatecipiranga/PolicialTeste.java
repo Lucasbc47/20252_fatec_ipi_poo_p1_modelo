@@ -1,3 +1,5 @@
+package br.gov.sp.cps.fatecipiranga;
+
 public class PolicialTeste {
     public static void main(String[] args) {
 
