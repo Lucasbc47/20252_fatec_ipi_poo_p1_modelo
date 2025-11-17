@@ -1,4 +1,7 @@
+
 package br.gov.sp.cps.fatecipiranga;
+
+// import java.util.ArrayList;
 
 public class Policial {
 
@@ -6,6 +9,8 @@ public class Policial {
     private String armamento;
     private int quantidadeGranadas;
     private int energia;
+
+    // private ArrayList<String> ataques;
 
     // construtor
     public Policial(String nomePolicial, String armamento, int quantidadeGranadas, int energia) {

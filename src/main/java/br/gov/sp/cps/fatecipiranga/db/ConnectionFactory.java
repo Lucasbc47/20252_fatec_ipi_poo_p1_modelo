@@ -11,7 +11,7 @@ public class ConnectionFactory {
     private static String password = "";
     private static String database = "defaultdb";
 
-    static Connection getConnection() {
+    public static Connection getConnection() {
         try {
             String url = String.format(
                     "jdbc:postgresql://%s:%s/%s",

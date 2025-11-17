@@ -1,11 +1,15 @@
 package br.gov.sp.cps.fatecipiranga;
 
+// import java.util.ArrayList;
+
 public class Terrorista {
 
     private String nomeTerrorista;
     private String armamento;
     private int quantidadeGranadas;
     private int energia;
+
+    // private ArrayList<String> ataques;
 
     // Construtor
     public Terrorista(String nomeTerrorista, String armamento, int quantidadeGranadas, int energia) {
