@@ -1,6 +1,7 @@
 package br.gov.sp.cps.fatecipiranga;
 
-// import java.util.ArrayList;
+import java.util.ArrayList;
+
 
 public class Terrorista {
 
@@ -8,8 +9,7 @@ public class Terrorista {
     private String armamento;
     private int quantidadeGranadas;
     private int energia;
-
-    // private ArrayList<String> ataques;
+    private ArrayList<String> atkLog;
 
     // Construtor
     public Terrorista(String nomeTerrorista, String armamento, int quantidadeGranadas, int energia) {
@@ -17,6 +17,7 @@ public class Terrorista {
         setArmamento(armamento);
         setQuantidadeGranadas(quantidadeGranadas);
         setEnergia(energia);
+        this.atkLog = new ArrayList<>();
     }
 
     // Setters
@@ -77,6 +78,10 @@ public class Terrorista {
         return this.energia;
     }
 
+    public ArrayList<String> getAtkLog(){
+        return this.atkLog;
+    }
+
     // Método receber dano
     public void receberDano(int dano) {
         if (this.energia <= 0)
@@ -106,7 +111,7 @@ public class Terrorista {
                     dano = 3;
                     break;
             }
-
+            this.atkLog.add(this.armamento);
             System.out.println(this.nomeTerrorista + " atacando com " + this.armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue atacar!");

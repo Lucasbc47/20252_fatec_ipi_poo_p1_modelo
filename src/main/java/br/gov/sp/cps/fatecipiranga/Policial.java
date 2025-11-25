@@ -1,7 +1,7 @@
 
 package br.gov.sp.cps.fatecipiranga;
 
-// import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class Policial {
 
@@ -9,8 +9,7 @@ public class Policial {
     private String armamento;
     private int quantidadeGranadas;
     private int energia;
-
-    // private ArrayList<String> ataques;
+    private ArrayList<String> atkLog;
 
     // construtor
     public Policial(String nomePolicial, String armamento, int quantidadeGranadas, int energia) {
@@ -18,6 +17,8 @@ public class Policial {
         setArmamento(armamento);
         setQuantidadeGranadas(quantidadeGranadas);
         setEnergia(energia);
+        this.atkLog = new ArrayList<>();
+        
     }
 
     // getters e setters
@@ -76,6 +77,10 @@ public class Policial {
     public int getEnergia() {
         return this.energia;
     }
+    
+    public ArrayList<String> getAtkLog(){
+        return this.atkLog;
+    }
 
     // Método receber dano
     public void receberDano(int dano) {
@@ -97,7 +102,7 @@ public class Policial {
         if (this.energia > 0) {
             switch (armamento) {
                 case "faca":
-                    dano = 1;
+                    dano = 1;                    
                     break;
                 case "pistola":
                     dano = 2;
@@ -106,11 +111,12 @@ public class Policial {
                     dano = 3;
                     break;
             }
-
+            this.atkLog.add(this.armamento);
             System.out.println(this.nomePolicial + " atacando com " + this.armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue atacar!");
         }
+
         return dano;
     }
 
