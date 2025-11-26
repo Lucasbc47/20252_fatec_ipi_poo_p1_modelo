@@ -12,7 +12,18 @@ CREATE TABLE registros_de_ataques (
     arma VARCHAR(100) NOT NULL,
     vezes INTEGER NOT NULL,
     mapa VARCHAR(100) NOT NULL
+); 
+
+CREATE TABLE resultado_rodada (
+    id SERIAL PRIMARY KEY,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    personagem VARCHAR(100) NOT NULL,
+    resultado TEXT NOT NULL,
+    rodada INTEGER NOT NULL
 );
+INSERT INTO resultado_rodada (personagem, resultado, rodada)
+VALUES ('policial-Lucas', 'Venceu', 1);
+
 
 SELECT *
 FROM registros_de_ataques

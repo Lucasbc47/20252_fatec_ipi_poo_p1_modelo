@@ -13,4 +13,17 @@ public class JogoDAO {
             return 0;
         }
     }
+     public void inserirResultado(String personagem, String resultado, int rodada) throws Exception {
+        var sql = "INSERT INTO resultado_rodada(personagem, resultado, rodada) VALUES(?,?,?)";
+
+        try (
+                var conexao = ConnectionFactory.getConnection();
+                var ps = conexao.prepareStatement(sql);) {
+            ps.setString(1, personagem);
+            ps.setString(2, resultado);
+            ps.setInt(3, rodada);
+            
+            ps.execute();
+        }
+    }
 }
