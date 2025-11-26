@@ -1,24 +1,32 @@
-
 package br.gov.sp.cps.fatecipiranga;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Policial {
 
     private String nomePolicial;
-    private String armamento;
     private int quantidadeGranadas;
     private int energia;
     private ArrayList<String> atkLog;
 
+    private Faca faca;
+    private Pistola pistola;
+    private Fuzil fuzil;
+    private Random random;
+
     // construtor
-    public Policial(String nomePolicial, String armamento, int quantidadeGranadas, int energia) {
+    public Policial(String nomePolicial, int quantidadeGranadas, int energia) {
         setNomePolicial(nomePolicial);
-        setArmamento(armamento);
         setQuantidadeGranadas(quantidadeGranadas);
         setEnergia(energia);
+
         this.atkLog = new ArrayList<>();
-        
+        this.faca = new Faca();
+        this.pistola = new Pistola();
+        this.fuzil = new Fuzil();
+        this.random = new Random();
+
     }
 
     // getters e setters
@@ -32,22 +40,6 @@ public class Policial {
 
     public String getNomePolicial() {
         return this.nomePolicial;
-    }
-
-    public void setArmamento(String armamento) {
-        switch (armamento) {
-            case "faca":
-            case "pistola":
-            case "fuzil":
-                this.armamento = armamento;
-                break;
-            default:
-                System.out.println("Armamentos disponiveis: faca, pistola e fuzil!");
-        }
-    }
-
-    public String getArmamento() {
-        return this.armamento;
     }
 
     public void setQuantidadeGranadas(int quantidadeGranadas) {
@@ -77,15 +69,16 @@ public class Policial {
     public int getEnergia() {
         return this.energia;
     }
-    
-    public ArrayList<String> getAtkLog(){
+
+    public ArrayList<String> getAtkLog() {
         return this.atkLog;
     }
 
     // Método receber dano
     public void receberDano(int dano) {
-        if (this.energia <= 0)
+        if (this.energia <= 0) {
             return;
+        }
 
         this.energia -= dano;
 
@@ -96,23 +89,26 @@ public class Policial {
     }
 
     // Método atacar
-    public int atacar(String armamento, String mapa) {
+    public int atacar(String mapa) {
         int dano = 0;
 
         if (this.energia > 0) {
-            switch (armamento) {
-                case "faca":
-                    dano = 1;                    
-                    break;
-                case "pistola":
-                    dano = 2;
-                    break;
-                case "fuzil":
-                    dano = 3;
-                    break;
+            int escolherArmamento = this.random.nextInt(3);
+
+            String armamento = "";
+
+            if (escolherArmamento == 0) {
+                dano = this.faca.getDano();
+                armamento = "faca";
+            } else if (escolherArmamento == 1) {
+                dano = this.pistola.getDano();
+                armamento = "pistola";
+            } else {
+                dano = this.fuzil.getDano();
+                armamento = "fuzil";
             }
-            this.atkLog.add(this.armamento);
-            System.out.println(this.nomePolicial + " atacando com " + this.armamento + " ~~ " + mapa);
+            this.atkLog.add(armamento);
+            System.out.println(this.nomePolicial + " atacando com " + armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomePolicial + " está morto e não consegue atacar!");
         }
@@ -157,7 +153,7 @@ public class Policial {
 
     // toString: para visualização agradavel da classe de Policial
     public String toString() {
-        return "<Policial nome=" + this.nomePolicial + " armamento=" + this.armamento +
-                " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
+        return "<Policial nome=" + this.nomePolicial
+                + " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
     }
 }

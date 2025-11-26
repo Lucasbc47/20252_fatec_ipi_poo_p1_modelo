@@ -1,23 +1,32 @@
 package br.gov.sp.cps.fatecipiranga;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Terrorista {
 
     private String nomeTerrorista;
-    private String armamento;
     private int quantidadeGranadas;
     private int energia;
     private ArrayList<String> atkLog;
 
+    private Faca faca;
+    private Pistola pistola;
+    private Fuzil fuzil;
+    private Random random;
+
     // Construtor
-    public Terrorista(String nomeTerrorista, String armamento, int quantidadeGranadas, int energia) {
+    public Terrorista(String nomeTerrorista, int quantidadeGranadas, int energia) {
         setNomeTerrorista(nomeTerrorista);
-        setArmamento(armamento);
         setQuantidadeGranadas(quantidadeGranadas);
         setEnergia(energia);
+
         this.atkLog = new ArrayList<>();
+        this.faca = new Faca();
+        this.pistola = new Pistola();
+        this.fuzil = new Fuzil();
+        this.random = new Random();
     }
 
     // Setters
@@ -29,17 +38,6 @@ public class Terrorista {
         }
     }
 
-    public void setArmamento(String armamento) {
-        switch (armamento) {
-            case "faca":
-            case "pistola":
-            case "fuzil":
-                this.armamento = armamento;
-                break;
-            default:
-                System.out.println("Armamentos disponiveis: faca, pistola e fuzil!");
-        }
-    }
 
     public void setQuantidadeGranadas(int quantidadeGranadas) {
         if (quantidadeGranadas < 0) {
@@ -64,10 +62,6 @@ public class Terrorista {
     // Getters
     public String getNomeTerrorista() {
         return this.nomeTerrorista;
-    }
-
-    public String getArmamento() {
-        return this.armamento;
     }
 
     public int getQuantidadeGranadas() {
@@ -96,26 +90,30 @@ public class Terrorista {
     }
 
     // Método atacar
-    public int atacar(String armamento, String mapa) {
+    public int atacar(String mapa) {
         int dano = 0;
 
         if (this.energia > 0) {
-            switch (armamento) {
-                case "faca":
-                    dano = 1;
-                    break;
-                case "pistola":
-                    dano = 2;
-                    break;
-                case "fuzil":
-                    dano = 3;
-                    break;
+            int escolherArmamento = this.random.nextInt(3);
+
+            String armamento = "";
+
+            if (escolherArmamento == 0) {
+                dano = this.faca.getDano();
+                armamento = "faca";
+            } else if (escolherArmamento == 1) {
+                dano = this.pistola.getDano();
+                armamento = "pistola";
+            } else {
+                dano = this.fuzil.getDano();
+                armamento = "fuzil";
             }
-            this.atkLog.add(this.armamento);
-            System.out.println(this.nomeTerrorista + " atacando com " + this.armamento + " ~~ " + mapa);
+            this.atkLog.add(armamento);
+            System.out.println(this.nomeTerrorista + " atacando com " + armamento + " ~~ " + mapa);
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue atacar!");
         }
+
         return dano;
     }
 
@@ -156,7 +154,7 @@ public class Terrorista {
 
     // toString: para visualização agradavel da classe de Terrorista
     public String toString() {
-        return "<Terrorista nome=" + this.nomeTerrorista + " armamento=" + this.armamento +
+        return "<Terrorista nome=" + this.nomeTerrorista +
                 " granadas=" + this.quantidadeGranadas + " energia=" + this.energia + ">";
     }
 }

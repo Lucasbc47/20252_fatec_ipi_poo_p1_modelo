@@ -36,8 +36,8 @@ public class App {
         int vitoriasPolicial = 0;
         int vitoriasTerrorista = 0;
 
-        Policial policial = new Policial("Eric", "fuzil", 2, 10);
-        Terrorista terrorista = new Terrorista("Rossi", "pistola", 3, 10);
+        Policial policial = new Policial("Eric", 2, 10);
+        Terrorista terrorista = new Terrorista("Rossi", 3, 10);
 
         // loop de rodadas
         for (int rodadaAtual = 1; rodadaAtual <= numRodadas; rodadaAtual++) {
@@ -85,7 +85,7 @@ public class App {
                             terrorista.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento(), mapa);
+                            int danoTerrorista = terrorista.atacar(mapa);
                             policial.receberDano(danoTerrorista);
                             break;
                         case 3:
@@ -109,7 +109,7 @@ public class App {
                             policial.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoPolicial = policial.atacar(policial.getArmamento(), mapa);
+                            int danoPolicial = policial.atacar(mapa);
                             terrorista.receberDano(danoPolicial);
                             break;
                         case 3:
@@ -134,7 +134,7 @@ public class App {
                             policial.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoPolicial = policial.atacar(policial.getArmamento(), mapa);
+                            int danoPolicial = policial.atacar(mapa);
                             terrorista.receberDano(danoPolicial);
                             break;
                         case 3:
@@ -158,7 +158,7 @@ public class App {
                             terrorista.lancarGranada(mapa);
                             break;
                         case 2:
-                            int danoTerrorista = terrorista.atacar(terrorista.getArmamento(), mapa);
+                            int danoTerrorista = terrorista.atacar(mapa);
                             policial.receberDano(danoTerrorista);
                             break;
                         case 3:
