@@ -3,6 +3,9 @@ package br.gov.sp.cps.fatecipiranga;
 import java.util.Random;
 import java.util.Scanner;
 
+import br.gov.sp.cps.fatecipiranga.db.AtaqueDAO;
+import br.gov.sp.cps.fatecipiranga.db.JogoDAO;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -38,6 +41,10 @@ public class App {
 
         Policial policial = new Policial("Eric", 2, 10);
         Terrorista terrorista = new Terrorista("Rossi", 3, 10);
+
+        JogoDAO jogoDao = new JogoDAO();
+        AtaqueDAO atkDao = new AtaqueDAO();
+        int jogo = jogoDao.getUltimoJogo() + 1;
 
         // loop de rodadas
         for (int rodadaAtual = 1; rodadaAtual <= numRodadas; rodadaAtual++) {
@@ -195,6 +202,15 @@ public class App {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++\n");
             }
         }
+
+        // Salvar histórico de ataques ao final de todas as rodadas
+        try {
+            policial.salvarAtaque(atkDao, jogo, mapa);
+            terrorista.salvarAtaque(atkDao, jogo, mapa);
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar histórico: " + e.getMessage());
+        }
+
         scanner.close();
         String vencedor;
         System.out.println("\n---- <FIM DA PARTIDA> ----");

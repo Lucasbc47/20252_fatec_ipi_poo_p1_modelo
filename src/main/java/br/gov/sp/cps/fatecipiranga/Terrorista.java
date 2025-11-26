@@ -3,6 +3,8 @@ package br.gov.sp.cps.fatecipiranga;
 import java.util.ArrayList;
 import java.util.Random;
 
+import br.gov.sp.cps.fatecipiranga.db.AtaqueDAO;
+import br.gov.sp.cps.fatecipiranga.models.Ataque;
 
 public class Terrorista {
 
@@ -11,9 +13,11 @@ public class Terrorista {
     private int energia;
     private ArrayList<String> atkLog;
 
+    // Armas do personagem
     private Faca faca;
     private Pistola pistola;
     private Fuzil fuzil;
+
     private Random random;
 
     // Construtor
@@ -37,7 +41,6 @@ public class Terrorista {
             System.out.println("Nome deve ter pelo menos 4 caracteres!");
         }
     }
-
 
     public void setQuantidadeGranadas(int quantidadeGranadas) {
         if (quantidadeGranadas < 0) {
@@ -72,7 +75,7 @@ public class Terrorista {
         return this.energia;
     }
 
-    public ArrayList<String> getAtkLog(){
+    public ArrayList<String> getAtkLog() {
         return this.atkLog;
     }
 
@@ -92,10 +95,9 @@ public class Terrorista {
     // Método atacar
     public int atacar(String mapa) {
         int dano = 0;
-
+        
         if (this.energia > 0) {
             int escolherArmamento = this.random.nextInt(3);
-
             String armamento = "";
 
             if (escolherArmamento == 0) {
@@ -149,6 +151,31 @@ public class Terrorista {
             return;
         } else {
             System.out.println(this.nomeTerrorista + " está morto e não consegue Passar a vez");
+        }
+    }
+
+    // Método para salvar histórico de ataques no banco
+    public void salvarAtaque(AtaqueDAO atkDao, int jogo, String mapa)
+            throws Exception {
+        int fuzil = 0, pistola = 0, faca = 0;
+        for (String arma : this.atkLog) {
+            if (arma.equals("fuzil")) {
+                fuzil++;
+            } else if (arma.equals("pistola")) {
+                pistola++;
+            } else if (arma.equals("faca")) {
+                faca++;
+            }
+        }
+        String nome = "terrorista-" + this.nomeTerrorista;
+        if (fuzil > 0) {
+            atkDao.cadastrar(new Ataque(jogo, nome, "fuzil", fuzil, mapa));
+        }
+        if (pistola > 0) {
+            atkDao.cadastrar(new Ataque(jogo, nome, "pistola", pistola, mapa));
+        }
+        if (faca > 0) {
+            atkDao.cadastrar(new Ataque(jogo, nome, "faca", faca, mapa));
         }
     }
 

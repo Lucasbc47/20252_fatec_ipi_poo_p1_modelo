@@ -8,7 +8,6 @@
 CREATE TABLE registros_de_ataques (
     identificacao SERIAL PRIMARY KEY,
     jogo INTEGER NOT NULL,
-    rodada INTEGER NOT NULL,
     personagem VARCHAR(100) NOT NULL,
     arma VARCHAR(100) NOT NULL,
     vezes INTEGER NOT NULL,
@@ -24,3 +23,9 @@ WHERE
     jogo = 1;
 -- Apagar jogo do ID 1
 DELETE FROM "registros_de_ataques" WHERE "jogo" = 1
+
+UPDATE registros_de_ataques
+SET
+    mapa = 'Chernobyl'
+WHERE
+    identificacao = 0
