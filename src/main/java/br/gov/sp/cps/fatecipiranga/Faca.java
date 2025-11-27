@@ -5,4 +5,8 @@ import lombok.Getter;
 @Getter
 public class Faca {
     private int dano = 1;
+
+    public int atacar() {
+        return this.dano;
+    }
 }

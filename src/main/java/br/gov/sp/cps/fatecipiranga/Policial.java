@@ -101,13 +101,13 @@ public class Policial {
             String armamento = "";
 
             if (escolherArmamento == 0) {
-                dano = this.faca.getDano();
+                dano = this.faca.atacar();
                 armamento = "faca";
             } else if (escolherArmamento == 1) {
-                dano = this.pistola.getDano();
+                dano = this.pistola.atacar();
                 armamento = "pistola";
             } else {
-                dano = this.fuzil.getDano();
+                dano = this.fuzil.atacar();
                 armamento = "fuzil";
             }
             this.atkLog.add(armamento);

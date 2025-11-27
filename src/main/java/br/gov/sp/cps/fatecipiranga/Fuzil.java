@@ -4,4 +4,8 @@ import lombok.Getter;
 @Getter
 public class Fuzil {
     private int dano = 3;
+
+    public int atacar() {
+        return this.dano;
+    }
 }
