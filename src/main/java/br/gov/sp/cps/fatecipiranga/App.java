@@ -41,7 +41,7 @@ public class App {
 
         Policial policial = new Policial("Eric", 2, 10);
         Terrorista terrorista = new Terrorista("Rossi", 3, 10);
-        
+
         JogoDAO jogoDao = new JogoDAO();
         AtaqueDAO atkDao = new AtaqueDAO();
         int jogo = jogoDao.getUltimoJogo() + 1;
@@ -104,7 +104,8 @@ public class App {
                     if (policial.getEnergia() <= 0) {
                         System.out.println(terrorista.getNomeTerrorista() + " venceu!");
                         vitoriasTerrorista++;
-                        jogoDao.inserirResultado("terrorista-"+terrorista.getNomeTerrorista(), "venceu matando "+policial.getNomePolicial(), rodadaAtual);
+                        jogoDao.inserirResultado("terrorista-" + terrorista.getNomeTerrorista(),
+                                "venceu matando " + policial.getNomePolicial(), rodadaAtual);
                         break;
                     }
                     int acaoPolicial = random.nextInt(4);
@@ -129,7 +130,8 @@ public class App {
                     if (terrorista.getEnergia() <= 0) {
                         System.out.println(policial.getNomePolicial() + " venceu!");
                         vitoriasPolicial++;
-                        jogoDao.inserirResultado("policial-"+policial.getNomePolicial(), "venceu matando "+terrorista.getNomeTerrorista(), rodadaAtual);
+                        jogoDao.inserirResultado("policial-" + policial.getNomePolicial(),
+                                "venceu matando " + terrorista.getNomeTerrorista(), rodadaAtual);
                         break;
                     }
                 } else {
@@ -155,7 +157,8 @@ public class App {
                     if (terrorista.getEnergia() <= 0) {
                         System.out.println(policial.getNomePolicial() + " venceu!");
                         vitoriasPolicial++;
-                        jogoDao.inserirResultado("policial-"+policial.getNomePolicial(), "venceu matando "+terrorista.getNomeTerrorista(), rodadaAtual);
+                        jogoDao.inserirResultado("policial-" + policial.getNomePolicial(),
+                                "venceu matando " + terrorista.getNomeTerrorista(), rodadaAtual);
                         break;
                     }
                     int acaoTerrorista = random.nextInt(4);
@@ -180,7 +183,8 @@ public class App {
                     if (policial.getEnergia() <= 0) {
                         System.out.println(terrorista.getNomeTerrorista() + " venceu!");
                         vitoriasTerrorista++;
-                        jogoDao.inserirResultado("terrorista-"+terrorista.getNomeTerrorista(), "venceu matando "+policial.getNomePolicial(), rodadaAtual);
+                        jogoDao.inserirResultado("terrorista-" + terrorista.getNomeTerrorista(),
+                                "venceu matando " + policial.getNomePolicial(), rodadaAtual);
                         break;
                     }
                 }
@@ -190,7 +194,8 @@ public class App {
                         System.out.println("Bomba explodiu!\n" + terrorista.getNomeTerrorista() + " venceu! \\o/"
                                 + " [TERRORISTS WIN]");
                         vitoriasTerrorista++;
-                        jogoDao.inserirResultado("terrorista-"+terrorista.getNomeTerrorista(), "venceu explodindo o "+policial.getNomePolicial(), rodadaAtual);
+                        jogoDao.inserirResultado("terrorista-" + terrorista.getNomeTerrorista(),
+                                "venceu explodindo o " + policial.getNomePolicial(), rodadaAtual);
                         break;
                     }
                     if (bombaFoiDesarmada == true) {
@@ -198,7 +203,8 @@ public class App {
                                 .println("Bomba foi desarmada! (ufa!)\n " + policial.getNomePolicial() + " venceu! \\o/"
                                         + " [COUNTER TERRORISTS WIN]");
                         vitoriasPolicial++;
-                        jogoDao.inserirResultado("policial-"+policial.getNomePolicial(), "venceu desarmando a bomba ", rodadaAtual);
+                        jogoDao.inserirResultado("policial-" + policial.getNomePolicial(), "venceu desarmando a bomba ",
+                                rodadaAtual);
                         break;
                     }
                 }
@@ -207,6 +213,10 @@ public class App {
                 System.out.println(policial);
                 System.out.println("+++++++++++++++++++++++++++++++++++++++\n");
             }
+            System.out.println("\n--- [ATAQUES] - [RODADA]:" + rodadaAtual + " ------");
+            System.out.println(terrorista.getNomeTerrorista() + ": " + terrorista.getAtkLog());
+            System.out.println(policial.getNomePolicial() + ": " + policial.getAtkLog());
+            System.out.println("---------------------------------------------------------\n");
         }
 
         // Salvar histórico de ataques ao final de todas as rodadas
